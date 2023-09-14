@@ -2,10 +2,10 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Register from "./components/Register";
+// import Register from "./components/Auth/Registration";
 import FarmerHome from "./components/FarmerHome";
 import PreserverHome from "./components/PreserverHome";
-import Registration from "./Auth/Registration";
+import Registration from "./components/Auth/Registration";
 import Farmer from "./components/Farmer/Farmer";
 
 
