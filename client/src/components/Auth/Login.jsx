@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const navigate = useNavigate();
 
 
   const [user, setUser] = useState({
@@ -29,15 +32,36 @@ const handleChange = (e) => {
     pass: "Invalid password"
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const { email, pass } = event.target.elements;
+    
+    const {  email, password } = user;
 
-    if (email.value === "example@email.com" && pass.value === "password") {
-      setIsSubmitted(true);
-    } else {
-      setErrorMessages({ email: errors.email, pass: errors.pass });
-    }
+        const res = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                email, password
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);
+        if(res.status===422 || res.status===401 || !data){
+            window.alert("Invalid Credentials")
+        }else{
+            window.alert("Login succesfull");
+            if (data.jobRole === "Farmer") {
+                navigate("/farmerHome")
+            }
+            else if (data.jobRole === "Preserver") {
+                navigate("/preserverHome");
+            }
+        }
+    
   };
 
   const renderErrorMessage = (name) =>
