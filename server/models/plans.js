@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const conn = require("../db/conn")
 
 const planSchema = new mongoose.Schema({
-    ownerId: {
+    preserverId: {
         type: String,
         required: true
+    },
+    preserverName: {
+        type: String,
+        required: true,
     },
     typeOfPlan: {
         type: String,

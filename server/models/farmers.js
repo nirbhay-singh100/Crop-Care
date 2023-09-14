@@ -24,6 +24,7 @@ const farmerSchema = new mongoose.Schema({
     jobRole: {
         type: String
     },
+    myPurchases: [Object],
     tokens: [{
         token: {
             type: String,

@@ -24,6 +24,7 @@ const preserverSchema = new mongoose.Schema({
     jobRole: {
         type: String
     },
+    myOrders: [Object],
     myPlans: [Object],
     tokens: [{
         token: {
