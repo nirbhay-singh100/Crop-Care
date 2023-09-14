@@ -5,23 +5,27 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import FarmerHome from "./components/FarmerHome";
 import PreserverHome from "./components/PreserverHome";
+import Registration from "./Auth/Registration";
+
+
 
 const App = () => {
     return (
         <>
-            <h1>Hello world</h1>
-    <Routes>
+        <Registration></Registration>
+        {/* <Routes>
 
-        <Route path="/home" element={<Home />} />
+                <Route path="/home" element={<Home />} />
 
-        <Route path="/login" element={<Login />} />
-    
-        <Route path="/register" element={<Register />} />
-        
-            <Route path="/farmerHome" element={<FarmerHome />} />
-          <Route path="/preserverHome" element={<PreserverHome />} />      
-       
-      </Routes>
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/register" element={<Register />} />
+
+                <Route path="/farmerHome" element={<FarmerHome />} />
+                <Route path="/preserverHome" element={<PreserverHome />} />
+
+            </Routes> */}
+
         </>
     )
 }

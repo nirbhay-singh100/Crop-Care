@@ -1,0 +1,104 @@
+body{
+    margin: 0;
+}
+.registration{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/farm.webp");
+}
+.backdrop{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.register-box{
+    width: 80%;
+    height: 80%;
+    min-width: 1000px;
+    min-height: 500px;
+    border-radius: 30px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.453);
+}
+.register-box-left{
+    height: 100%;
+    flex:60;
+    /* background-color: rgb(128, 128, 128); */
+    background-color: rgba(0, 0, 0, 0.238);
+    background-image: url("../images/woman-hands-holding-seedling-black-soil-against-light-background_185193-3767.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+}
+.register-box-form{
+    flex: 40;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.register-form-title{
+    margin-top: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 900;
+}
+.register-form-title span{
+    color: green;
+}
+.register-form-heading{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+.register-form-name{
+    color: gray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    font-weight: 800;
+}
+.register-form-input{
+    width: 100%;
+    height: 30px;
+}
+.register-input-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.register-input-box input{
+    outline: none;
+    transition: 0.5s;
+    border-radius: 3px;
+    border: 2px solid gray;
+}
+.register-input-box input:focus{
+    border: 2px solid rgba(165, 42, 42, 0.825);
+}
+.register-input-box div{
+    width: 90%;
+}
+.register-submit-button{
+    margin-top: 30px;
+}
+.register-submit-button button{
+    width: 150px;
+    height: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(68, 154, 68);
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
