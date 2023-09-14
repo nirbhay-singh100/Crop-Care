@@ -177,7 +177,8 @@ router.get("/allPlans",  async (req, res) => {
         (allPlans) => { 
             res.status(201).json({allPlans});
         }
-    )
+        )
+    
     } catch (error) {
         console.log(error);
     }
