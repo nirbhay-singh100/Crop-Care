@@ -9,6 +9,7 @@ const Plan = require("../models/plans");
 const bcrypt = require("bcryptjs");
 const farmersAuth = require("../middleware/farmersAuth");
 const preserverAuth = require("../middleware/preserverAuth");
+const farmerAuth = require("../middleware/farmersAuth");
 
 router.use(cookieParser());
 
@@ -167,6 +168,21 @@ router.post("/createPlan", preserverAuth, async (req, res) => {
         console.log(error);
     }
 })
+
+//        to show all plans
+
+router.get("allPlans", farmerAuth, async (req, res) => {
+    try {
+        Plan.find().then(
+        (allPlans) => { 
+            res.json({allPlans});
+        }
+    )
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 
 //       for mapping the plans 
 
