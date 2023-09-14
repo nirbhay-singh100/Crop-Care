@@ -6,13 +6,15 @@ import Register from "./components/Register";
 import FarmerHome from "./components/FarmerHome";
 import PreserverHome from "./components/PreserverHome";
 import Registration from "./Auth/Registration";
+import Farmer from "./components/Farmer/Farmer";
 
 
 
 const App = () => {
     return (
         <>
-        <Registration></Registration>
+        {/* <Registration></Registration> */}
+        <Farmer></Farmer>
         {/* <Routes>
 
                 <Route path="/home" element={<Home />} />

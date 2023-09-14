@@ -1,0 +1,90 @@
+body{
+    margin: 0;
+}
+
+.farmer{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+}
+
+.left-box{
+    flex: 30;
+    height: 100%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    overflow-y: scroll;
+}
+.middle-box{
+    flex: 40;
+    height: 100%;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+.right-box{
+    flex: 30;
+    background-color: beige;
+}
+.name-box{
+    margin-top: 50px;
+    height: 25%;
+    max-height: 200px;
+    /* min-height: 300px; */
+    width: 90%;
+    min-width: 400px;
+    background-color: antiquewhite;
+    margin-bottom: 100px;
+    display: flex;
+}
+/* .name-box div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+} */
+.user-image{
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-info-box{
+    flex: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-info{
+    height: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.name-box div img{
+    width: 80%;
+}
+.something{
+    height: 25%;
+    max-height: 200px;
+    /* min-height: 300px; */
+    width: 90%;
+    min-width: 400px;
+    background-color: antiquewhite;
+    margin-bottom: 100px;
+    display: flex;
+}
+.preserver-list-heading{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 900;
+}
