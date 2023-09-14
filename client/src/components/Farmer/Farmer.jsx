@@ -98,6 +98,14 @@ const Farmer = () => {
                 <ListComponent selectPreserver={setPreserver} name="Nirbhay"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="Raj"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="something"></ListComponent> */}
+
+                {
+                    list.map((plan) => {
+                        <ListComponent selectPreserver={setPreserver} preserverName={plan.preserverName} typeOfPlan={plan.typeOfPlan } price={plan.price} />
+                    })
+                }
+                
+
                 
             </div>
             <div className="right-box">
