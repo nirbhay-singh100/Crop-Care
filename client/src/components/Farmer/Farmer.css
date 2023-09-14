@@ -80,6 +80,7 @@ body{
     background-color: antiquewhite;
     margin-bottom: 100px;
     display: flex;
+    flex-direction: column;
 }
 .preserver-list-heading{
     margin-top: 30px;
