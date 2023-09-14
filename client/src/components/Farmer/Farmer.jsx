@@ -14,7 +14,7 @@ const Farmer = () => {
     const [list, setList] = useState([{
         preserverName:"",
         typeOfPlan:"",
-        price:""
+        price: 0
     }]);
     const navigate = useNavigate();
 
@@ -30,12 +30,15 @@ const Farmer = () => {
             });
 
             const data = await res.json();
-            console.log(data);
+            //console.log(data);
 
             if(res.status!==201){
                 const error = new Error(res.error);
                 throw error; 
             }
+
+            setList(data.allPlans);
+            console.log(list);
 
         } catch (error){
             console.log(error);
