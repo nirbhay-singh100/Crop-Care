@@ -4,7 +4,7 @@ const Farmer = require("../models/farmers")
 
 const farmerAuth = async(req, res, next) => {
     try{
-        console.log(req.cookies);
+        //console.log(req.cookies);
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, process.env.SECRET_KEY_FARMER);
         //console.log(verifyUser);
@@ -18,7 +18,7 @@ const farmerAuth = async(req, res, next) => {
 
         req.token = token;
         req.farmer = farmer;
-        req.userID = user._id;
+        req.userID = farmer._id;
 
         next();
 

@@ -6,13 +6,14 @@ const User = require("../models/users");
 const Farmer = require("../models/farmers");
 const Preserver = require("../models/preservers");
 const bcrypt = require("bcryptjs");
-const auth = require("../middleware/farmersAuth");
+const farmersAuth = require("../middleware/farmersAuth");
+const preserverAuth = require("../middleware/preserverAuth");
 
 router.use(cookieParser());
 
 router.post("/register", async(req, res) => {
     try{
-        console.log(req.body);
+        //console.log(req.body);
         const {fname, lname, email,jobRole, password, cpassword} = req.body;
 
         if(!fname || !lname || !email || !jobRole || !password || !cpassword){
@@ -48,7 +49,7 @@ router.post("/register", async(req, res) => {
                 //console.log(res.cookie);
                 await newFarmer.save();
             
-                res.status(201).json({message : "user registered successfully"}); 
+                res.status(201).json(newFarmer); 
             }
             else if(jobRole==="Preserver"){
                 const newPreserver = new Preserver({
@@ -68,7 +69,7 @@ router.post("/register", async(req, res) => {
                 //console.log(res.cookie);
                 await newPreserver.save();
             
-                res.status(201).json({message : "user registered successfully"});
+                res.status(201).json(newPreserver);
             }
             
             const newUser = new User({
@@ -128,5 +129,13 @@ router.post("/login", async (req, res) => {
         console.log(error);
     }
 });
+
+router.get("/farmerHome", farmersAuth ,async (req, res) => {
+    res.json(req.farmer);
+})
+
+router.get("/preserverHome", preserverAuth ,async (req, res) => {
+    res.json(req.preserver);
+})
 
 module.exports = router;

@@ -4,7 +4,7 @@ const Preserver = require("../models/preservers")
 
 const preserverAuth = async(req, res, next) => {
     try{
-        console.log(req.cookies);
+        //console.log(req.cookies);
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, process.env.SECRET_KEY_PRESERVER);
         //console.log(verifyUser);
@@ -18,7 +18,7 @@ const preserverAuth = async(req, res, next) => {
 
         req.token = token;
         req.preserver = preserver;
-        req.userID = user._id;
+        req.userID = preserver._id;
 
         next();
 
