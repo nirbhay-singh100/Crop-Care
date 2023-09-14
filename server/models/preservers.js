@@ -34,7 +34,7 @@ const preserverSchema = new mongoose.Schema({
 
 preserverSchema.methods.generateAuthToken = async function(){
     try{
-        const token = jwt.sign({_id: this._id.toString()}, process.env.SECRET_KEY);
+        const token = jwt.sign({_id: this._id.toString()}, process.env.SECRET_KEY_PRESERVER);
         this.tokens = this.tokens.concat({token: token});
         await this.save();
         //console.log(token);

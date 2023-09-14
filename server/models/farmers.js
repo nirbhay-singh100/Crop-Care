@@ -34,7 +34,7 @@ const farmerSchema = new mongoose.Schema({
 
 farmerSchema.methods.generateAuthToken = async function(){
     try{
-        const token = jwt.sign({_id: this._id.toString()}, process.env.SECRET_KEY);
+        const token = jwt.sign({_id: this._id.toString()}, process.env.SECRET_KEY_FARMER);
         this.tokens = this.tokens.concat({token: token});
         await this.save();
         //console.log(token);

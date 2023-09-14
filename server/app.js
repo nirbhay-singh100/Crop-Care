@@ -2,11 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 
-
 const bcrypt = require("bcryptjs");
 const cookieParser = require('cookie-parser')
 
-const auth = require("./middleware/auth");
+const auth = require("./middleware/farmersAuth");
 const cors = require("cors");
 
 const app = express();
@@ -26,5 +25,5 @@ app.use(require("./router/userAuth"));
 
 
 app.listen(port, (req, res) => {
-    console.log("server is running on port",port);
+    console.log("server is running on port",port); 
 })
