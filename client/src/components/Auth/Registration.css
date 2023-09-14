@@ -4,7 +4,7 @@ body{
 .registration{
     width: 100vw;
     height: 100vh;
-    background-image: url("../images/farm.webp");
+    background-image: url("../../images/farm.webp");
 }
 .backdrop{
     width: 100vw;
@@ -29,7 +29,7 @@ body{
     flex:60;
     /* background-color: rgb(128, 128, 128); */
     background-color: rgba(0, 0, 0, 0.238);
-    background-image: url("../images/woman-hands-holding-seedling-black-soil-against-light-background_185193-3767.jpg");
+    background-image: url("../../images/woman-hands-holding-seedling-black-soil-against-light-background_185193-3767.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: multiply;

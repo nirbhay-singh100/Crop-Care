@@ -171,11 +171,11 @@ router.post("/createPlan", preserverAuth, async (req, res) => {
 
 //        to show all plans
 
-router.get("allPlans", farmerAuth, async (req, res) => {
+router.get("/allPlans",  async (req, res) => {
     try {
         Plan.find().then(
         (allPlans) => { 
-            res.json({allPlans});
+            res.status(201).json({allPlans});
         }
     )
     } catch (error) {

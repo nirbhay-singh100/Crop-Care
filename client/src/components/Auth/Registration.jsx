@@ -30,33 +30,33 @@ function Registration() {
 
 
     const handleSubmit = async (event) => {
-        // event.preventDefault();
-        // const { fname, lname, email, jobRole, password, cpassword } = user;
+        event.preventDefault();
+        const { fname, lname, email, jobRole, password, cpassword } = user;
 
-        // const res = await fetch("http://localhost:5000/register", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     credentials: "include",
-        //     body: JSON.stringify({
-        //         fname, lname, email, jobRole, password, cpassword
-        //     })
-        // });
+        const res = await fetch("http://localhost:5000/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                fname, lname, email, jobRole, password, cpassword
+            })
+        });
 
-        // const data = await res.json();
-        // console.log(data);
-        // if(res.status===422 || !data){
-        //     window.alert("Invalid Registration")
-        // }else{
-        //     window.alert("Registration succesfull");
-        //     if (data.jobRole === "Farmer") {
-        //         navigate("/farmerHome")
-        //     }
-        //     else if (data.jobRole === "Preserver") {
-        //         navigate("/preserverHome");
-        //     }
-        // }
+        const data = await res.json();
+        console.log(data);
+        if(res.status===422 || !data){
+            window.alert("Invalid Registration")
+        }else{
+            window.alert("Registration succesfull");
+            if (data.jobRole === "Farmer") {
+                navigate("/farmerHome")
+            }
+            else if (data.jobRole === "Preserver") {
+                navigate("/preserverHome");
+            }
+        }
     }
 
     return (

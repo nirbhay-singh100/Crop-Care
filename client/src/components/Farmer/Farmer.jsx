@@ -6,12 +6,12 @@ import ListComponent from "./ListComponent";
 const Farmer = () => {
 
     const [preserver, setPreserver] = useState({});
-
-    // const navigate = useNavigate();
+    const [list, setList] = useState([]);
+    const navigate = useNavigate();
 
     // const farmerHome = async () => {
     //     try{
-    //         const res = await fetch("http://localhost:5000/farmerHome", {
+    //         const res = await fetch("http://localhost:5000/allPlans", {
     //             method: "GET",
     //             header: {
     //                 Accept: "application/json",
@@ -31,14 +31,28 @@ const Farmer = () => {
 
     //     } catch (error){
     //         console.log(error);
-    //         navigate("/login");
+    //         // navigate("/login");
     //     }
     // }
 
     // useEffect(()=> {
     //     farmerHome();
     // }, [])
+
+    useEffect(()=>{
+        async function fetchdata(){
+            const res = await fetch("http://localhost:5000/allPlans");
+            console.log(res);
+            const data = await res.json();
+            console.log(data);
+            setList(data);
+        }
+        fetchdata();
+    },[]);
     
+
+
+
     return(
         <div className="farmer">
             <div className="left-box">
