@@ -1,9 +1,11 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import "./Farmer.css";
 import user from "../../images/user.png"
 import ListComponent from "./ListComponent";
 const Farmer = () => {
+
+    const [preserver, setPreserver] = useState({});
 
     // const navigate = useNavigate();
 
@@ -52,7 +54,7 @@ const Farmer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="something">
+                <div className="payment-model">
 
                 </div>
             </div>
@@ -60,13 +62,14 @@ const Farmer = () => {
                 <div className="preserver-list-heading">
                     List Of Preservers
                 </div>
-                <ListComponent></ListComponent>
-                <ListComponent></ListComponent>
-                <ListComponent></ListComponent>
-                <ListComponent></ListComponent>
+                <ListComponent selectPreserver={setPreserver} name="harshit"></ListComponent>
+                <ListComponent selectPreserver={setPreserver} name="Nirbhay"></ListComponent>
+                <ListComponent selectPreserver={setPreserver} name="Raj"></ListComponent>
+                <ListComponent selectPreserver={setPreserver} name="something"></ListComponent>
             </div>
             <div className="right-box">
-
+                {preserver.name?preserver.name:""}
+                {preserver.email?preserver.email:""}
             </div>
         </div>
     )
