@@ -1,10 +1,10 @@
 const express = require("express");
-
 const router = express.Router();
 const cookieParser = require("cookie-parser");
 const User = require("../models/users");
 const Farmer = require("../models/farmers");
 const Preserver = require("../models/preservers");
+const Plan = require("../models/plans");
 const bcrypt = require("bcryptjs");
 const farmersAuth = require("../middleware/farmersAuth");
 const preserverAuth = require("../middleware/preserverAuth");
@@ -136,6 +136,44 @@ router.get("/farmerHome", farmersAuth ,async (req, res) => {
 
 router.get("/preserverHome", preserverAuth ,async (req, res) => {
     res.json(req.preserver);
+})
+
+
+//////         For creating the plans
+router.post("/createPlan", preserverAuth, async (req, res) => {
+    try {
+        const {typeOfPlan, price } = req.body;
+        if(!typeOfPlan || !price){
+            res.status(422).json({error: "Please fill all the fields"});
+        }
+
+        const newPlan = new Plan({
+            ownerId: req.preserver.userId,
+            typeOfPlan: typeOfPlan,
+            price: price
+        });
+
+        await newPlan.save();
+
+        await Preserver.findOneAndUpdate({_id: req.preserver.userId }, { $push: { myPlans: newPlan } }).then(
+            () => {
+                console.log("posts updated");
+            }
+        );
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+//       for mapping the plans 
+
+router.get("/showMyPlans", preserverAuth, async (req, res) => {
+    try {
+        res.json(req.preservers);
+    } catch (error) {
+        
+    }
 })
 
 module.exports = router;
