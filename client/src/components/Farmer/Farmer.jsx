@@ -70,9 +70,25 @@ const Farmer = () => {
             setList(data.allPlans);
             console.log(list);
         }
+        async function fetchPurchases(){
+            const res = await fetch("http://localhost:5000/myPurchases");
+            const data = await res.json();
+            console.log(data);
+        }
+        fetchPurchases();
         fetchdata();
+
     },[list.length]);
     
+
+    // useEffect(()=>{
+    //     async function fetchdata(){
+    //         const res = await fetch("http://localhost:5000/myPurchases");
+    //         const data = await res.json();
+    //         console.log(data);
+    //     }
+    //     fetchdata();
+    // },[])
 
     async function handleSubmit(e){
         e.preventDefault();
