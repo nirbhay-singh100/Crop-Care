@@ -7,7 +7,7 @@ const farmerAuth = async(req, res, next) => {
         //console.log(req.cookies);
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, process.env.SECRET_KEY_FARMER);
-        //console.log(verifyUser);
+        console.log(verifyUser);
 
         const farmer = await Farmer.findOne({_id: verifyUser._id});
         //console.log(user);

@@ -255,7 +255,7 @@ router.post("/buyPlan", farmersAuth, async (req, res) => {
 
 router.get("/myPurchases", farmersAuth, async (req, res) => {
     try {
-        res.json(req.farmer);
+        res.status(201).json(req.farmer);
     } catch (error) {
         console.log(error);
     }
