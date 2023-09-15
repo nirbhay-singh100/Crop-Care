@@ -1,6 +1,6 @@
 import React from 'react';
 import "./listcomponent.css"
-export default function ListComponent( {preserverName, price, typeOfPlan, preserverID, duration, startDate, Enddate, weight, totalPrice}){
+export default function purchaseListComponent( {preserverName, price, typeOfPlan, preserverID, duration, startDate, Enddate, weight, totalPrice}){
 
     return (
         <div className='purchase-list-component'>
