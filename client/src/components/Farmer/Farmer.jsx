@@ -214,7 +214,7 @@ const Farmer = () => {
                     {purchaseList.map((it, index) => {
 
                         // return <ListComponent preserverName={it.preserverName} price={it.pricePerKg} typeOfPlan={it.typeOfPlan}  weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice} key={it.preserverId}></ListComponent>
-                        return <PurchaseListComponent key={index}preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>
+                        return <PurchaseListComponent key={index} preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>;
                     })}
                 </div>
 
