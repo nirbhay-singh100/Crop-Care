@@ -5,25 +5,17 @@ import user from "../../images/user.png"
 // import ListComponent from "./ListComponent";
 // import PurchaseListComponent from "./PurchaseListComponent";
 const Preserver = () => {
-    const [model, setModel] = useState({
-        weight: 0,
-        duration: 1,
-
-    })
-    const [preserver, setPreserver] = useState({
-        preserverName: "",
-        preserverID: "",
-        price: 0,
-        typeOfPlan: ""
-    });
     const [plans, setPlans] = useState([]);
     const [orderList, setOrderList] = useState([]);
     const navigate = useNavigate();
-
+    const [createPlan, setCreatePlan] = useState({
+        typeOfPlan: "",
+        price:""
+    })
 
     function handleChange(e) {
         const { name, value } = e.target;
-        setModel(prev => {
+        setCreatePlan(prev => {
             return {
                 ...prev,
                 [name]: value
@@ -43,15 +35,17 @@ const Preserver = () => {
             });
 
             const data = await res.json();
-            console.log(res.status);
-
+            
+            
             if (res.status !== 200) {
                 const error = new Error(res.error);
                 throw error;
             }
 
-            //setPlans(data.myPlans);
-            console.log(data);
+            //console.log(res.status);
+            //console.log(data);
+            setPlans(data.myPlans);
+            console.log(plans);
 
         } catch (error) {
             console.log(error);
@@ -77,9 +71,11 @@ const Preserver = () => {
                 throw error; 
             }
             
-            console.log(data.myOrders);
+            console.log(res.status);
+            console.log(data.myOrders); 
+            
             setOrderList(data.myOrders);
-           // console.log(orderList);
+            console.log(orderList);
 
         } catch (error) {
             console.log(error);
@@ -89,80 +85,28 @@ const Preserver = () => {
     useEffect(() => {
         showMyPlans();
         myOrders();
-    }, [])
+    }, [orderList.length, plans.length])
 
-    // useEffect(()=>{
-    //     async function fetchdata(){
-    //         const res = await fetch("http://localhost:5000/allPlans");
-    //         // console.log(res);
-    //         const data = await res.json();
-    //         console.log(data);
-    //         setList(data.allPlans);
-    //         console.log(list);
+    
+    async function handleSubmit(event){
+        event.preventDefault();
+        const typeOfPlan = createPlan.typeOfPlan;
+        const price = createPlan.price;
 
-
-    //     }
-    //     // async function fetchPurchases(){
-    //     //     const res = await fetch("http://localhost:5000/myPurchases");
-    //     //     const data = await res.json();
-    //     //     console.log(data);
-    //     // }
-    //     // fetchPurchases();
-    //     fetchdata();
-
-    // },[list.length]);
-
-
-    // useEffect(()=>{
-    //     async function fetchdata(){
-    //         const res = await fetch("http://localhost:5000/myPurchases");
-    //         const data = await res.json();
-    //         console.log(data);
-    //     }
-    //     fetchdata();
-    // },[])
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-        const submitObject = {
-            preserverName: preserver.preserverName,
-            preserverID: preserver.preserverID,
-            price: preserver.price,
-            typeOfPlan: preserver.typeOfPlan,
-            duration: model.duration,
-            weight: model.weight
-        }
-        console.log(submitObject);
-
-
-
-        const res = await fetch("http://localhost:5000/buyPlan", {
+        const res = await fetch("http://localhost:5000/createPlan", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             credentials: "include",
             body: JSON.stringify({
-                preserverId: submitObject.preserverID, preserverName: submitObject.preserverName, price: submitObject.price, typeOfPlan: submitObject.typeOfPlan, duration: submitObject.duration, weight: submitObject.weight
+                typeOfPlan, price
             })
         });
 
         const data = await res.json();
         console.log(data);
-        // if(res.status===422 || res.status===401 || !data){
-        //     window.alert("Invalid Credentials")
-        // }else{
-        //     window.alert("Login succesfull");
-        //     if (data.jobRole === "Farmer") {
-        //         navigate("/farmerHome")
-        //     }
-        //     else if (data.jobRole === "Preserver") {
-        //         navigate("/preserverHome");
-        //     }
-        // }
-
     }
-
     return (
         <div className="farmer">
             <div className="left-box">
@@ -175,12 +119,12 @@ const Preserver = () => {
                             <div className="user-info">
                                 <div style={{ fontSize: "22px", fontWeight: "900", fontFamily: "calibri" }}>Harshit Bamotra</div>
                                 <div style={{ fontSize: "16px", fontWeight: "200", fontFamily: "calibri" }}>harshitbamotra.01@gmail.com</div>
-                                <div>Farmer</div>
+                                <div>Preserver</div>
                             </div>
                         </div>
                     </div>
                     <div className="payment-model">
-                        <div className="price"><span>Price: </span> {preserver.price ? preserver.price : ""} rs per kg</div>
+                        {/* <div className="price"><span>Price: </span> {preserver.price ? preserver.price : ""} rs per kg</div>
                         <div className="weight-box">
                             <div>Weight: </div>
                             <input type="text" required name="weight" onChange={handleChange} value={model.weight}></input>
@@ -190,8 +134,17 @@ const Preserver = () => {
                             <input type="range" min="1" max={7} name="duration" onChange={handleChange} value={model.duration}></input>
                             <div>{model.duration ? model.duration : ""}</div>
                         </div>
-                        <div className="total-cost">Total Cost: {preserver.price ? model.weight ? model.duration ? preserver.price * model.weight * model.duration : "" : "" : ""}</div>
-                        <button className="payment-model-button" onClick={handleSubmit}>Submit Order</button>
+                        <div className="total-cost">Total Cost: {preserver.price ? model.weight ? model.duration ? preserver.price * model.weight * model.duration : "" : "" : ""}</div> */}
+                        <div>
+                            <div className="preserver-type-of-plan">Type of Plan</div>
+                            <input type="radio" name="typeOfPlan" value={"Monthly"} onChange={handleChange} />Monthly
+                            <input type="radio" name="typeOfPlan" value={"Weekly"} onChange={handleChange} />Weekly
+                        </div>
+                        <div>
+                            <div>Price per kg: </div>
+                            <input type="text" name="price" value={createPlan.price} onChange={handleChange} required></input>
+                        </div>
+                        <button className="payment-model-button" onClick={handleSubmit}>Submit Plan</button>
                     </div>
                 </div>
             </div>
@@ -207,6 +160,7 @@ const Preserver = () => {
                     {/* {list.map((item) => {
                         return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId}></ListComponent>
                     })} */}
+
                 </div>
             </div>
             <div className="right-box">
@@ -216,6 +170,7 @@ const Preserver = () => {
                         // return <ListComponent preserverName={it.preserverName} price={it.pricePerKg} typeOfPlan={it.typeOfPlan}  weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice} key={it.preserverId}></ListComponent>
                         return <PurchaseListComponent key={index} preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>;
                     })} */}
+                    
                 </div>
 
             </div>
