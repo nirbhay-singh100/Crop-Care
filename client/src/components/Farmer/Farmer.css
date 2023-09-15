@@ -12,7 +12,13 @@ body{
 .left-box{
     flex: 30;
     height: 100%;
-    background-color: aqua;
+    background-image: url("../../images/green\ farm.jpeg");
+}
+.left-container{
+    width: 100%;
+    height: 100%;
+    /* background-color: aqua; */
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +28,13 @@ body{
 .middle-box{
     flex: 40;
     height: 100%;
-    background-color: aquamarine;
+    background-image: url("../../images/gaiyafarm.jpeg");
+}
+.middle-container{
+    width: 100%;
+    height: 100%;
+    /* background-color: aquamarine; */
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +42,14 @@ body{
 }
 .right-box{
     flex: 30;
-    background-color: beige;
+    height: 100%;
+    /* background-color: beige; */
+    background-image: url("../../images/tractor.jpeg");
+}
+.right-container{
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
 }
 .name-box{
     margin-top: 50px;
@@ -39,9 +58,16 @@ body{
     /* min-height: 300px; */
     width: 90%;
     min-width: 400px;
-    background-color: antiquewhite;
+    /* background-color: rgba(255, 255, 255, 0.57); */
     margin-bottom: 100px;
     display: flex;
+
+    background: rgba(255, 255, 255, 0.412);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 )
 }
 /* .name-box div{
     display: flex;
@@ -77,11 +103,17 @@ body{
     /* min-height: 300px; */
     width: 90%;
     min-width: 400px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     display: flex;
     flex-direction: column;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     justify-content: space-evenly;
+    background: rgba(255, 255, 255, 0.412);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 )
 }
 .price{
     margin: 0 30px 0 30px;
@@ -89,21 +121,27 @@ body{
 .price span{
     font-weight: 800;
 }
+
 .weight-box{
     margin: 0 30px 0 30px;
     display: flex;
     align-items: center;
+    font-weight: 800;
 }
+
 .duration-box{
     margin: 0 30px 0 30px;
     display: flex;
     align-items: center;
+    font-weight: 800;
 }
+
 .total-cost{
     margin: 0 30px 0 30px;
+    font-weight: 800;
 }
 .payment-model-button{
-    width: 200px;
+    width: 120px;
     height: 25px;
     font-size: 16px;
     margin: 0 30px 0 30px;

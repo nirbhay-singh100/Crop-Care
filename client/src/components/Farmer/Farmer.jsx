@@ -1,30 +1,30 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Farmer.css";
 import user from "../../images/user.png"
 import ListComponent from "./ListComponent";
 const Farmer = () => {
-    const [model,setModel] = useState({
-        weight:0,
-        duration:1,
+    const [model, setModel] = useState({
+        weight: 0,
+        duration: 1,
 
     })
     const [preserver, setPreserver] = useState({
-        preserverName:"",
-        preserverID:"",
-        price:0,
-        typeOfPlan:""
+        preserverName: "",
+        preserverID: "",
+        price: 0,
+        typeOfPlan: ""
     });
     const [list, setList] = useState([]);
     const navigate = useNavigate();
 
 
-    function handleChange(e){
-        const {name, value} = e.target;
-        setModel(prev=>{
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setModel(prev => {
             return {
                 ...prev,
-                [name]:value
+                [name]: value
             }
         })
     }
@@ -61,8 +61,8 @@ const Farmer = () => {
     //     farmerHome();
     // }, [])
 
-    useEffect(()=>{
-        async function fetchdata(){
+    useEffect(() => {
+        async function fetchdata() {
             const res = await fetch("http://localhost:5000/allPlans");
             // console.log(res);
             const data = await res.json();
@@ -70,16 +70,16 @@ const Farmer = () => {
             setList(data.allPlans);
             console.log(list);
         }
-        async function fetchPurchases(){
-            const res = await fetch("http://localhost:5000/myPurchases");
-            const data = await res.json();
-            console.log(data);
-        }
-        fetchPurchases();
+        // async function fetchPurchases(){
+        //     const res = await fetch("http://localhost:5000/myPurchases");
+        //     const data = await res.json();
+        //     console.log(data);
+        // }
+        // fetchPurchases();
         fetchdata();
 
-    },[list.length]);
-    
+    }, [list.length]);
+
 
     // useEffect(()=>{
     //     async function fetchdata(){
@@ -90,7 +90,7 @@ const Farmer = () => {
     //     fetchdata();
     // },[])
 
-    async function handleSubmit(e){
+    async function handleSubmit(e) {
         e.preventDefault();
         const submitObject = {
             preserverName: preserver.preserverName,
@@ -102,7 +102,7 @@ const Farmer = () => {
         }
         console.log(submitObject);
 
-        
+
 
         const res = await fetch("http://localhost:5000/buyPlan", {
             method: "POST",
@@ -111,7 +111,7 @@ const Farmer = () => {
             },
             credentials: "include",
             body: JSON.stringify({
-                preserverId: submitObject.preserverID, preserverName: submitObject.preserverName, price: submitObject.price, typeOfPlan: submitObject.typeOfPlan, duration: submitObject.duration , weight: submitObject.weight
+                preserverId: submitObject.preserverID, preserverName: submitObject.preserverName, price: submitObject.price, typeOfPlan: submitObject.typeOfPlan, duration: submitObject.duration, weight: submitObject.weight
             })
         });
 
@@ -131,51 +131,56 @@ const Farmer = () => {
 
     }
 
-    return(
+    return (
         <div className="farmer">
             <div className="left-box">
-                <div className="name-box">
-                    <div className="user-image">
-                        <img src={user} alt=""></img>
-                    </div>
-                    <div className="user-info-box">
-                        <div className="user-info">
-                            <div style={{fontSize:"22px", fontWeight:"900", fontFamily:"calibri"} }>Harshit Bamotra</div>
-                            <div style={{fontSize:"16px", fontWeight:"200", fontFamily:"calibri"} }>harshitbamotra.01@gmail.com</div>
-                            <div>Farmer</div>
+                <div className="left-container">
+                    <div className="name-box">
+                        <div className="user-image">
+                            <img src={user} alt=""></img>
+                        </div>
+                        <div className="user-info-box">
+                            <div className="user-info">
+                                <div style={{ fontSize: "22px", fontWeight: "900", fontFamily: "calibri" }}>Harshit Bamotra</div>
+                                <div style={{ fontSize: "16px", fontWeight: "200", fontFamily: "calibri" }}>harshitbamotra.01@gmail.com</div>
+                                <div>Farmer</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="payment-model">
-                    <div className="price"><span>Price: </span> {preserver.price?preserver.price:""} per kg</div>
-                    <div className="weight-box">
-                        <div>weight: </div>
-                        <input type="text" required name="weight" onChange={handleChange} value={model.weight}></input>
+                    <div className="payment-model">
+                        <div className="price"><span>Price: </span> {preserver.price ? preserver.price : ""} rs per kg</div>
+                        <div className="weight-box">
+                            <div>Weight: </div>
+                            <input type="text" required name="weight" onChange={handleChange} value={model.weight}></input>
+                        </div>
+                        <div className="duration-box">
+                            <div>Period: </div>
+                            <input type="range" min="1" max={7} name="duration" onChange={handleChange} value={model.duration}></input>
+                            <div>{model.duration ? model.duration : ""}</div>
+                        </div>
+                        <div className="total-cost">Total Cost: {preserver.price ? model.weight ? model.duration ? preserver.price * model.weight * model.duration : "" : "" : ""}</div>
+                        <button className="payment-model-button" onClick={handleSubmit}>Submit Order</button>
                     </div>
-                    <div className="duration-box">
-                        <div>Period: </div>
-                        <input type="range" min="1" max={7} name="duration" onChange={handleChange} value={model.duration}></input>
-                        <div>{model.duration?model.duration:""}</div>
-                    </div>
-                    <div className="total-cost">total cost: {preserver.price?model.weight?model.duration?preserver.price*model.weight*model.duration:"":"":""}</div>
-                    <button className="payment-model-button" onClick={handleSubmit}>submit order</button>
                 </div>
             </div>
             <div className="middle-box">
-                <div className="preserver-list-heading">
-                    List Of Preservers
-                </div>
-                {/* <ListComponent selectPreserver={setPreserver} name="harshit"></ListComponent>
+                <div className="middle-container">
+                    <div className="preserver-list-heading">
+                        List Of Preservers
+                    </div>
+                    {/* <ListComponent selectPreserver={setPreserver} name="harshit"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="Nirbhay"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="Raj"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="something"></ListComponent> */}
-                {list.map((item)=>{
-                    return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId}></ListComponent>
-                })}
+                    {list.map((item) => {
+                        return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId}></ListComponent>
+                    })}
+                </div>
             </div>
             <div className="right-box">
-                {preserver.name?preserver.name:""}
-                {preserver.email?preserver.email:""}
+                <div className="right-container">
+
+                </div>
             </div>
         </div>
     )

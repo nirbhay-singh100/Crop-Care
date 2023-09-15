@@ -3,7 +3,8 @@
     margin: 20px 0 20px 0;
     padding: 20px 30px 20px 30px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: pink;
+    background-color: rgba(139, 69, 19, 0.5);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
 }
 .list-component:hover{
