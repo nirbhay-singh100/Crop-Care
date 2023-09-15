@@ -18,7 +18,7 @@ const Farmer = () => {
         typeOfPlan: ""
     });
     const [list, setList] = useState([]);
-    const [purchaseList, setPurchaseList] = useState([]);
+    const [purchaseList, setPurchaseList] = useState([{}]);
     const navigate = useNavigate();
 
 
@@ -215,7 +215,7 @@ const Farmer = () => {
             </div>
             <div className="right-box">
                 <div className="right-container">
-                <div className="preserver-list-heading">
+                <div className="preserver-list-heading-right">
                         Previous Purchases
                     </div>
                     {purchaseList.map((it, index) => {
