@@ -29,56 +29,78 @@ const Farmer = () => {
         })
     }
 
-    // const farmerHome = async () => {
-    //     try{
-    //         const res = await fetch("http://localhost:5000/allPlans", {
-    //             method: "GET",
-    //             header: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //             credentials: "include"
-    //         });
+    const farmerHome = async () => {
+        try{
+            const res = await fetch("http://localhost:5000/allPlans", {
+                method: "GET",
+                header: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
 
+            const data = await res.json();
+            //console.log(data);
+
+            if(res.status!==201){
+                const error = new Error(res.error);
+                throw error; 
+            }
+
+            setList(data.allPlans);
+            console.log(list);
+
+        } catch (error){
+            console.log(error);
+            navigate("/login");
+        }
+    }
+
+    const myPurchases = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/myPurchases", {
+                method: "GET",
+                header: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            const data = await res.json();
+            console.log(data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(()=> {
+        farmerHome();
+        myPurchases();
+    }, [])
+
+    // useEffect(()=>{
+    //     async function fetchdata(){
+    //         const res = await fetch("http://localhost:5000/allPlans");
+    //         // console.log(res);
     //         const data = await res.json();
-    //         //console.log(data);
-
-    //         if(res.status!==201){
-    //             const error = new Error(res.error);
-    //             throw error; 
-    //         }
-
+    //         console.log(data);
     //         setList(data.allPlans);
     //         console.log(list);
 
-    //     } catch (error){
-    //         console.log(error);
-    //         navigate("/login");
+            
     //     }
-    // }
+    //     // async function fetchPurchases(){
+    //     //     const res = await fetch("http://localhost:5000/myPurchases");
+    //     //     const data = await res.json();
+    //     //     console.log(data);
+    //     // }
+    //     // fetchPurchases();
+    //     fetchdata();
 
-    // useEffect(()=> {
-    //     farmerHome();
-    // }, [])
-
-    useEffect(()=>{
-        async function fetchdata(){
-            const res = await fetch("http://localhost:5000/allPlans");
-            // console.log(res);
-            const data = await res.json();
-            console.log(data);
-            setList(data.allPlans);
-            console.log(list);
-        }
-        async function fetchPurchases(){
-            const res = await fetch("http://localhost:5000/myPurchases");
-            const data = await res.json();
-            console.log(data);
-        }
-        fetchPurchases();
-        fetchdata();
-
-    },[list.length]);
+    // },[list.length]);
     
 
     // useEffect(()=>{
