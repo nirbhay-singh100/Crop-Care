@@ -177,7 +177,8 @@ router.get("/allPlans",  async (req, res) => {
         (allPlans) => { 
             res.status(201).json({allPlans});
         }
-    )
+        )
+    
     } catch (error) {
         console.log(error);
     }
@@ -198,49 +199,54 @@ router.get("/showMyPlans", preserverAuth, async (req, res) => {
 
 router.post("/buyPlan", farmersAuth, async (req, res) => {
     try {
+        //console.log(req.body);
         const { preserverId, preserverName, typeOfPlan, duration, price, weight } = req.body;
 
         if (!duration || !weight) {
-            res.status(422).json({error: "Please fill all the fields"});
+            res.status(422).json({ error: "Please fill all the fields" });
         }
-
-        const totalPrice = duration * price * weight;
-
-        const newPurchase = {
-            preserverId: preserverId,
-            preserverName: preserverName,
-            typeOfPlan: typeOfPlan,
-            duration: duration,
-            totalWeight: weight,
-            pricePerKG: price,
-            totalPrice: totalPrice,
-            startDate: date.getStartDate(),
-            endDate: date.getEndDate(typeOfPlan, duration)
-        }
-
-        await Farmer.findOneAndUpdate({_id: req.userId }, { $push: { myPurchases: newPurchase } }).then(
-            () => {
-                console.log("purchase added");
+        else {
+        
+            const totalPrice = Number(duration) * price * Number(weight);
+            //console.log(totalPrice);
+            console.log(req.userId);
+            const newPurchase = {
+                preserverId: preserverId,
+                preserverName: preserverName,
+                typeOfPlan: typeOfPlan,
+                duration: duration,
+                totalWeight: weight,
+                pricePerKG: price,
+                totalPrice: totalPrice,
+                startDate: date.getStartDate(),
+                endDate: date.getEndDate(typeOfPlan, duration)
             }
-        );
 
-        const newOrder = {
-            farmerId: req.farmer._id,
-            farmerName: req.farmer.firstName,
-            typeOfPlan: typeOfPlan,
-            duration: duration,
-            totalWeight: weight,
-            pricePerKG: price,
-            totalPrice: totalPrice,
-            startDate: date.getStartDate(),
-            endDate: date.getEndDate(typeOfPlan, duration)
-        }
+            await Farmer.findOneAndUpdate({ _id: req.userId }, { $push: { myPurchases: newPurchase } }).then(
+                () => {
+                    console.log("purchase added");
+                }
+            );
 
-        await Preserver.findOneAndUpdate({_id: req.preserverId }, { $push: { myOrders: newOrder } }).then(
-            () => {
-                console.log("order added");
+            const newOrder = {
+                farmerId: req.farmer._id,
+                farmerName: req.farmer.firstName,
+                typeOfPlan: typeOfPlan,
+                duration: duration,
+                totalWeight: weight,
+                pricePerKG: price,
+                totalPrice: totalPrice,
+                startDate: date.getStartDate(),
+                endDate: date.getEndDate(typeOfPlan, duration)
             }
-        );
+
+            console.log(preserverId);
+            await Preserver.findOneAndUpdate({ _id: preserverId }, { $push: { myOrders: newOrder } }).then(
+                () => {
+                    console.log("order added");
+                }
+            );
+        }
 
     } catch (error) {
         console.log(error);

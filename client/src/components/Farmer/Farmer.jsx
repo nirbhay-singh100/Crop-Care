@@ -102,6 +102,32 @@ const Farmer = () => {
         }
         console.log(submitObject);
 
+        
+
+        const res = await fetch("http://localhost:5000/buyPlan", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                preserverId: submitObject.preserverID, preserverName: submitObject.preserverName, price: submitObject.price, typeOfPlan: submitObject.typeOfPlan, duration: submitObject.duration , weight: submitObject.weight
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);
+        // if(res.status===422 || res.status===401 || !data){
+        //     window.alert("Invalid Credentials")
+        // }else{
+        //     window.alert("Login succesfull");
+        //     if (data.jobRole === "Farmer") {
+        //         navigate("/farmerHome")
+        //     }
+        //     else if (data.jobRole === "Preserver") {
+        //         navigate("/preserverHome");
+        //     }
+        // }
 
     }
 
@@ -144,7 +170,7 @@ const Farmer = () => {
                 <ListComponent selectPreserver={setPreserver} name="Raj"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="something"></ListComponent> */}
                 {list.map((item)=>{
-                    return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item._id}></ListComponent>
+                    return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId}></ListComponent>
                 })}
             </div>
             <div className="right-box">

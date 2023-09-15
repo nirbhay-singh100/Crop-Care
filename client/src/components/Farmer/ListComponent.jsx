@@ -20,3 +20,31 @@ export default function ListComponent({selectPreserver, preserverName, price, ty
         </div>
     )
 }
+
+
+
+// const ListComponent = (props) => {
+//     // function handleClick(){
+//     //     selectPreserver({
+//     //         // name:name,
+//     //         // email:"harshitbamotra.01@gmail.com",
+//     //         // age:"69"
+//     //     })
+//     // }
+
+//     function handleClick() {
+        
+//     }
+//     return (
+//         <div className='list-component' onClick={handleClick}>
+//             <div className='list-plan'>
+//                 <div className='list-plan-planname'>{props.typeOfPlan}</div>
+//                 <div className='plan-max-time'>maximum time: 7 months</div>
+//             </div>
+//             <div className='list-name'>{props.preserverName}</div>
+//             <div className='list-price'><span style={{ fontWeight: "700" }}>Cost: </span>{ props.price}</div>
+//         </div>
+//     )
+// }
+
+// export default ListComponent;
