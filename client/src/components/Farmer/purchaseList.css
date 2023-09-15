@@ -13,7 +13,7 @@
 }
 .purchase-list-box{
     width: 95%;
-    height: 90%;
+    height: 100%;
 }
 .type-of-plan{
     margin: 5px 10px 5px 10px;
@@ -21,4 +21,32 @@
     justify-content: space-between;
     font-weight: 800;
     font-size: 20px;
+}
+.purchase-list-weight{
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+}
+.purchase-list-cost{
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+}
+.purchase-list-duration{
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+}
+.purchase-list-date{
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
 }
