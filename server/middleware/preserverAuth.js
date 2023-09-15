@@ -18,7 +18,7 @@ const preserverAuth = async(req, res, next) => {
 
         req.token = token;
         req.preserver = preserver;
-        req.userID = preserver._id;
+        req.userId = preserver._id;
 
         next();
 

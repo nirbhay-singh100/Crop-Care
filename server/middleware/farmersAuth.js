@@ -18,7 +18,7 @@ const farmerAuth = async(req, res, next) => {
 
         req.token = token;
         req.farmer = farmer;
-        req.userID = farmer._id;
+        req.userId = farmer._id;
 
         next();
 
