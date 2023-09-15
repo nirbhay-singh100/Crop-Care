@@ -16,7 +16,7 @@ const Farmer = () => {
         typeOfPlan: ""
     });
     const [list, setList] = useState([]);
-    const [purchaseList, setPurchaseList] = useState([]);
+    const [purchaseList, setPurchaseList] = useState([{}]);
     const navigate = useNavigate();
 
 
@@ -71,13 +71,13 @@ const Farmer = () => {
 
             const data = await res.json();
 
-            // if(res.status!==201){
-            //     const error = new Error(res.error);
-            //     throw error; 
-            // }
-
+            if(res.status!==201){
+                const error = new Error(res.error);
+                throw error; 
+            }
+            console.log(res.status);
             console.log(data.myPurchases);
-            setPurchaseList(data.myPurchases);
+            setPurchaseList(data.myPurchase);
             console.log(purchaseList);
 
         } catch (error) {
