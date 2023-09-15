@@ -45,11 +45,16 @@ body{
     height: 100%;
     /* background-color: beige; */
     background-image: url("../../images/tractor.jpeg");
+    /* overflow-y: scroll; */
 }
 .right-container{
     width: 100%;
     height: 100%;
     backdrop-filter: blur(5px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .name-box{
     margin-top: 50px;

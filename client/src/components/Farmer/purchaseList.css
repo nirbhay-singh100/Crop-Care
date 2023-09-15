@@ -1,0 +1,24 @@
+.purchase-list-component{
+    width: 90%;
+    
+    margin: 20px 0 20px 0;
+    /* padding: 20px 30px 20px 30px; */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgba(139, 69, 19, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.purchase-list-box{
+    width: 95%;
+    height: 90%;
+}
+.type-of-plan{
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 20px;
+}

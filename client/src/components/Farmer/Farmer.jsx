@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Farmer.css";
 import user from "../../images/user.png"
 import ListComponent from "./ListComponent";
+import PurchaseListComponent from "./PurchaseListComponent";
 const Farmer = () => {
     const [model, setModel] = useState({
         weight: 0,
@@ -31,7 +32,7 @@ const Farmer = () => {
     }
 
     const farmerHome = async () => {
-        try{
+        try {
             const res = await fetch("http://localhost:5000/allPlans", {
                 method: "GET",
                 header: {
@@ -44,15 +45,15 @@ const Farmer = () => {
             const data = await res.json();
             //console.log(data);
 
-            if(res.status!==201){
+            if (res.status !== 201) {
                 const error = new Error(res.error);
-                throw error; 
+                throw error;
             }
 
             setList(data.allPlans);
             console.log(list);
 
-        } catch (error){
+        } catch (error) {
             console.log(error);
             navigate("/login");
         }
@@ -85,7 +86,7 @@ const Farmer = () => {
         }
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         farmerHome();
         myPurchases();
     }, [])
@@ -99,7 +100,7 @@ const Farmer = () => {
     //         setList(data.allPlans);
     //         console.log(list);
 
-            
+
     //     }
     //     // async function fetchPurchases(){
     //     //     const res = await fetch("http://localhost:5000/myPurchases");
@@ -110,7 +111,7 @@ const Farmer = () => {
     //     fetchdata();
 
     // },[list.length]);
-    
+
 
     // useEffect(()=>{
     //     async function fetchdata(){
@@ -209,9 +210,14 @@ const Farmer = () => {
                 </div>
             </div>
             <div className="right-box">
-                {/* {purchaseList.map((item)=>{
-                    return <ListComponent preserverName={item.preserverName} price={item.pricePerKg} typeOfPlan={item.typeOfPlan}  weight={item.totalWeight} duration={item.duration} startDate={item.startDate} endDate={item.endDate} totalPrice={item.totalPrice} key={item.preserverId}></ListComponent>
-                })} */}
+                <div className="right-container">
+                    {purchaseList.map((it, index) => {
+
+                        // return <ListComponent preserverName={it.preserverName} price={it.pricePerKg} typeOfPlan={it.typeOfPlan}  weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice} key={it.preserverId}></ListComponent>
+                        return <PurchaseListComponent key={index}preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>
+                    })}
+                </div>
+
             </div>
         </div>
     )
