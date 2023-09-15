@@ -100,6 +100,9 @@ function Registration() {
                                         <input type="radio" name="jobRole" value={"Farmer"} onChange={handleChange} />Farmer
                                         <input type="radio" name="jobRole" value={"Preserver"} onChange={handleChange} />Preserver
                                     </div>
+                                    <div>
+                                        already have an account? <a href="/login" alt="">login</a>
+                                    </div>
                                     <div className="register-submit-button">
                                         <button type="submit" onClick={handleSubmit}>Register</button>
                                     </div>

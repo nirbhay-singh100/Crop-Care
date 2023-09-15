@@ -28,7 +28,7 @@ body{
 .middle-box{
     flex: 40;
     height: 100%;
-    background-image: url("../../images/gaiyafarm.jpeg");
+    background-image: url("../../images/kisankhet.jpg");
 }
 .middle-container{
     width: 100%;
@@ -101,6 +101,7 @@ body{
 }
 .name-box div img{
     width: 80%;
+    border-radius: 100%;
 }
 .payment-model{
     height: 25%;
@@ -157,4 +158,13 @@ body{
     font-size: 40px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 900;
+}
+
+.preserver-list-heading-right{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 900;
+    position: absolute;
 }

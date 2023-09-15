@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Farmer.css";
 import user from "../../images/user.png"
+import kisan from "../../images/kisan.jpg";
 import ListComponent from "./ListComponent";
 import PurchaseListComponent from "./PurchaseListComponent";
 const Farmer = () => {
@@ -171,12 +172,12 @@ const Farmer = () => {
                 <div className="left-container">
                     <div className="name-box">
                         <div className="user-image">
-                            <img src={user} alt=""></img>
+                            <img src={kisan} alt=""></img>
                         </div>
                         <div className="user-info-box">
                             <div className="user-info">
-                                <div style={{ fontSize: "22px", fontWeight: "900", fontFamily: "calibri" }}>Harshit Bamotra</div>
-                                <div style={{ fontSize: "16px", fontWeight: "200", fontFamily: "calibri" }}>harshitbamotra.01@gmail.com</div>
+                                <div style={{ fontSize: "22px", fontWeight: "900", fontFamily: "calibri" }}>Ramesh Mukesh</div>
+                                <div style={{ fontSize: "16px", fontWeight: "200", fontFamily: "calibri" }}>RameshMukesh@gmail.com</div>
                                 <div>Farmer</div>
                             </div>
                         </div>
@@ -190,7 +191,8 @@ const Farmer = () => {
                         <div className="duration-box">
                             <div>Period: </div>
                             <input type="range" min="1" max={7} name="duration" onChange={handleChange} value={model.duration}></input>
-                            <div>{model.duration ? model.duration : ""}</div>
+                            <div>{model.duration ? model.duration: ""}</div>
+                            <div>{preserver.typeOfPlan==="Monthly"?"  months":preserver.typeOfPlan==="Weekly"?"  weeks":""}</div>
                         </div>
                         <div className="total-cost">Total Cost: {preserver.price ? model.weight ? model.duration ? preserver.price * model.weight * model.duration : "" : "" : ""}</div>
                         <button className="payment-model-button" onClick={handleSubmit}>Submit Order</button>
@@ -213,11 +215,14 @@ const Farmer = () => {
             </div>
             <div className="right-box">
                 <div className="right-container">
+                <div className="preserver-list-heading">
+                        Previous Purchases
+                    </div>
                     {purchaseList.map((it, index) => {
 
                         // return <ListComponent preserverName={it.preserverName} price={it.pricePerKg} typeOfPlan={it.typeOfPlan}  weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice} key={it.preserverId}></ListComponent>
                         return <PurchaseListComponent key={index} preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>;
-                    })}
+                    }).reverse()}
                 </div>
 
             </div>
