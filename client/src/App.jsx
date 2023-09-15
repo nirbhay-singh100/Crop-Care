@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Registration from "./components/Auth/Registration";
 import Farmer from "./components/Farmer/Farmer";
 import Login from "./components/Auth/Login"
-
+import Preserver from "./components/Preserver/Preserver";
 
 const App = () => {
     return (
@@ -23,7 +23,7 @@ const App = () => {
 
                 <Route path="/farmerHome" element={<Farmer></Farmer>} />
                 {/* <Route path="/preserverHome" element={<Preserver></Preserver>} /> */}
-
+                <Route path="/preserverHome" element={<Preserver></Preserver>} />
             </Routes>
 
         </>

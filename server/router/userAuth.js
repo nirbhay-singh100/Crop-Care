@@ -189,9 +189,9 @@ router.get("/allPlans",  async (req, res) => {
 
 router.get("/showMyPlans", preserverAuth, async (req, res) => {
     try {
-        res.json(req.preserver);
+        res.status(200).json(req.preserver);
     } catch (error) {
-        
+        console.log(error);
     }
 })
 
@@ -263,7 +263,7 @@ router.get("/myPurchases", farmersAuth, async (req, res) => {
 
 router.get("/myOrders", preserverAuth, async (req, res) => {
     try {
-        res.json(req.preserver);
+        res.status(200).json(req.preserver);
     } catch (error) {
         console.log(error);
     }

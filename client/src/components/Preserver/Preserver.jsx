@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Farmer.css";
+import "./Preserver.css";
 import user from "../../images/user.png"
-import ListComponent from "./ListComponent";
-import PurchaseListComponent from "./PurchaseListComponent";
+// import ListComponent from "./ListComponent";
+// import PurchaseListComponent from "./PurchaseListComponent";
 const Farmer = () => {
     const [model, setModel] = useState({
         weight: 0,
@@ -16,8 +16,8 @@ const Farmer = () => {
         price: 0,
         typeOfPlan: ""
     });
-    const [list, setList] = useState([]);
-    const [purchaseList, setPurchaseList] = useState([]);
+    const [plans, setPlans] = useState([]);
+    const [orderList, setOrderList] = useState([]);
     const navigate = useNavigate();
 
 
@@ -31,9 +31,9 @@ const Farmer = () => {
         })
     }
 
-    const farmerHome = async () => {
+    const showMyPlans = async () => {
         try {
-            const res = await fetch("http://localhost:5000/allPlans", {
+            const res = await fetch("http://localhost:5000/showMyPlans", {
                 method: "GET",
                 header: {
                     Accept: "application/json",
@@ -43,15 +43,15 @@ const Farmer = () => {
             });
 
             const data = await res.json();
-            //console.log(data);
+            console.log(res.status);
 
-            if (res.status !== 201) {
+            if (res.status !== 200) {
                 const error = new Error(res.error);
                 throw error;
             }
 
-            setList(data.allPlans);
-            console.log(list);
+            //setPlans(data.myPlans);
+            console.log(data);
 
         } catch (error) {
             console.log(error);
@@ -59,9 +59,9 @@ const Farmer = () => {
         }
     }
 
-    const myPurchases = async () => {
+    const myOrders = async () => {
         try {
-            const res = await fetch("http://localhost:5000/myPurchases", {
+            const res = await fetch("http://localhost:5000/myOrders", {
                 method: "GET",
                 header: {
                     Accept: "application/json",
@@ -72,14 +72,14 @@ const Farmer = () => {
 
             const data = await res.json();
 
-            if(res.status!==201){
+            if(res.status!==200){
                 const error = new Error(res.error);
                 throw error; 
             }
-            console.log(res.status);
-            console.log(data.myPurchases);
-            setPurchaseList(data.myPurchase);
-            console.log(purchaseList);
+            
+            console.log(data.myOrders);
+            setOrderList(data.myOrders);
+           // console.log(orderList);
 
         } catch (error) {
             console.log(error);
@@ -87,8 +87,8 @@ const Farmer = () => {
     }
 
     useEffect(() => {
-        farmerHome();
-        myPurchases();
+        showMyPlans();
+        myOrders();
     }, [])
 
     // useEffect(()=>{
@@ -204,18 +204,18 @@ const Farmer = () => {
                 <ListComponent selectPreserver={setPreserver} name="Nirbhay"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="Raj"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="something"></ListComponent> */}
-                    {list.map((item) => {
+                    {/* {list.map((item) => {
                         return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId}></ListComponent>
-                    })}
+                    })} */}
                 </div>
             </div>
             <div className="right-box">
                 <div className="right-container">
-                    {purchaseList.map((it, index) => {
+                    {/* {purchaseList.map((it, index) => {
 
                         // return <ListComponent preserverName={it.preserverName} price={it.pricePerKg} typeOfPlan={it.typeOfPlan}  weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice} key={it.preserverId}></ListComponent>
                         return <PurchaseListComponent key={index} preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>;
-                    })}
+                    })} */}
                 </div>
 
             </div>
