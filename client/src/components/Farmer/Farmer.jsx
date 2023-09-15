@@ -43,12 +43,14 @@ const Farmer = () => {
             });
 
             const data = await res.json();
-            //console.log(data);
+            console.log(res.status);
 
-            if (res.status !== 201) {
+            if (!(res.status===200 || res.status===201)) {
                 const error = new Error(res.error);
                 throw error;
             }
+
+            console.log(data);
 
             setList(data.allPlans);
             console.log(list);
@@ -72,13 +74,13 @@ const Farmer = () => {
 
             const data = await res.json();
 
-            if(res.status!==201){
+            if(!(res.status===200 || res.status===201)){
                 const error = new Error(res.error);
                 throw error; 
             }
-            console.log(res.status);
-            console.log(data.myPurchases);
-            setPurchaseList(data.myPurchase);
+            // console.log(res.status);
+            console.log(data);
+            setPurchaseList(data.myPurchases);
             console.log(purchaseList);
 
         } catch (error) {
@@ -205,7 +207,7 @@ const Farmer = () => {
                 <ListComponent selectPreserver={setPreserver} name="Raj"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="something"></ListComponent> */}
                     {list.map((item) => {
-                        return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId}></ListComponent>
+                        return <ListComponent preserverName={item.preserverName} price={item.price} typeOfPlan={item.typeOfPlan} selectPreserver={setPreserver} preserverID={item.preserverId} key={item._id}></ListComponent>
                     })}
                 </div>
             </div>
