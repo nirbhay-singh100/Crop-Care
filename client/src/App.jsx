@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Registration from "./components/Auth/Registration";
 import Farmer from "./components/Farmer/Farmer";
 import Login from "./components/Auth/Login"
+import Split from "./components/Split";
 
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
         {/* <Farmer></Farmer> */}
         {/* <Login></Login> */}
         <Routes>
-
+                <Route path="/" element={<Farmer></Farmer>}></Route>
                 <Route path="/login" element={<Login />} />
 
                 <Route path="/register" element={<Registration/>} />

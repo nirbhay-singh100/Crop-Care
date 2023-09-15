@@ -171,7 +171,7 @@ router.post("/createPlan", preserverAuth, async (req, res) => {
 
 //        to show all plans
 
-router.get("/allPlans",  async (req, res) => {
+router.get("/allPlans", farmersAuth ,async (req, res) => {
     try {
         Plan.find().then(
         (allPlans) => { 
@@ -255,7 +255,7 @@ router.post("/buyPlan", farmersAuth, async (req, res) => {
 
 router.get("/myPurchases", farmersAuth, async (req, res) => {
     try {
-        res.status(201).json(req.farmer);
+        res.json(req.farmer);
     } catch (error) {
         console.log(error);
     }

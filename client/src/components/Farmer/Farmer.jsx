@@ -43,9 +43,9 @@ const Farmer = () => {
             });
 
             const data = await res.json();
-            //console.log(data);
+            console.log(res.status);
 
-            if (res.status !== 201) {
+            if (!(res.status===200 || res.status===201)) {
                 const error = new Error(res.error);
                 throw error;
             }
@@ -72,10 +72,10 @@ const Farmer = () => {
 
             const data = await res.json();
 
-            // if(res.status!==201){
-            //     const error = new Error(res.error);
-            //     throw error; 
-            // }
+            if(!(res.status===200 || res.status===201)){
+                const error = new Error(res.error);
+                throw error; 
+            }
 
             console.log(data.myPurchases);
             setPurchaseList(data.myPurchases);
@@ -89,7 +89,7 @@ const Farmer = () => {
     useEffect(() => {
         farmerHome();
         myPurchases();
-    }, [])
+    }, [purchaseList.length , list.length])
 
     // useEffect(()=>{
     //     async function fetchdata(){
