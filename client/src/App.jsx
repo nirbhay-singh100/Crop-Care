@@ -8,6 +8,7 @@ import Registration from "./components/Auth/Registration";
 import Farmer from "./components/Farmer/Farmer";
 import Login from "./components/Auth/Login"
 import Split from "./components/Split";
+import Preserver from "./components/Preserver/Preserver";
 
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
 
                 <Route path="/farmerHome" element={<Farmer></Farmer>} />
                 {/* <Route path="/preserverHome" element={<Preserver></Preserver>} /> */}
-
+                <Route path="/preserverHome" element={<Preserver></Preserver>} />
             </Routes>
 
         </>

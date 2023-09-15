@@ -144,7 +144,9 @@ router.get("/preserverHome", preserverAuth ,async (req, res) => {
 //////         For creating the plans
 router.post("/createPlan", preserverAuth, async (req, res) => {
     try {
-        const {typeOfPlan, price } = req.body;
+        const typeOfPlan = req.body.typeOfPlan;
+        const price = Number(req.body.price);
+
         if(!typeOfPlan || !price){
             res.status(422).json({error: "Please fill all the fields"});
         }
@@ -189,9 +191,9 @@ router.get("/allPlans", farmersAuth ,async (req, res) => {
 
 router.get("/showMyPlans", preserverAuth, async (req, res) => {
     try {
-        res.json(req.preserver);
+        res.status(200).json(req.preserver);
     } catch (error) {
-        
+        console.log(error);
     }
 })
 
@@ -263,7 +265,7 @@ router.get("/myPurchases", farmersAuth, async (req, res) => {
 
 router.get("/myOrders", preserverAuth, async (req, res) => {
     try {
-        res.json(req.preserver);
+        res.status(200).json(req.preserver);
     } catch (error) {
         console.log(error);
     }

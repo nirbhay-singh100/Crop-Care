@@ -18,7 +18,7 @@ const Farmer = () => {
         typeOfPlan: ""
     });
     const [list, setList] = useState([]);
-    const [purchaseList, setPurchaseList] = useState([{}]);
+    const [purchaseList, setPurchaseList] = useState([]);
     const navigate = useNavigate();
 
 
