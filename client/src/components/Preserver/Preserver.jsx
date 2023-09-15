@@ -4,7 +4,7 @@ import "./Preserver.css";
 import user from "../../images/user.png"
 // import ListComponent from "./ListComponent";
 // import PurchaseListComponent from "./PurchaseListComponent";
-const Farmer = () => {
+const Preserver = () => {
     const [model, setModel] = useState({
         weight: 0,
         duration: 1,
@@ -198,7 +198,7 @@ const Farmer = () => {
             <div className="middle-box">
                 <div className="middle-container">
                     <div className="preserver-list-heading">
-                        List Of Preservers
+                        My Orders
                     </div>
                     {/* <ListComponent selectPreserver={setPreserver} name="harshit"></ListComponent>
                 <ListComponent selectPreserver={setPreserver} name="Nirbhay"></ListComponent>
@@ -223,4 +223,4 @@ const Farmer = () => {
     )
 }
 
-export default Farmer;
+export default Preserver;

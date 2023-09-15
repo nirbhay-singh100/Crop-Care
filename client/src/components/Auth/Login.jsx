@@ -53,7 +53,7 @@ const handleChange = (e) => {
         if(res.status===422 || res.status===401 || !data){
             window.alert("Invalid Credentials")
         }else{
-            window.alert("Login succesfull");
+            //window.alert("Login succesfull");
             if (data.jobRole === "Farmer") {
                 navigate("/farmerHome")
             }
