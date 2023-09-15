@@ -16,6 +16,7 @@ const Farmer = () => {
         typeOfPlan:""
     });
     const [list, setList] = useState([]);
+    const [purchaseList, setPurchaseList] = useState([]);
     const navigate = useNavigate();
 
 
@@ -69,7 +70,15 @@ const Farmer = () => {
             });
 
             const data = await res.json();
-            console.log(data);
+
+            // if(res.status!==201){
+            //     const error = new Error(res.error);
+            //     throw error; 
+            // }
+
+            console.log(data.myPurchases);
+            setPurchaseList(data.myPurchases);
+            console.log(purchaseList);
 
         } catch (error) {
             console.log(error);
@@ -196,8 +205,9 @@ const Farmer = () => {
                 })}
             </div>
             <div className="right-box">
-                {preserver.name?preserver.name:""}
-                {preserver.email?preserver.email:""}
+                {/* {purchaseList.map((item)=>{
+                    return <ListComponent preserverName={item.preserverName} price={item.pricePerKg} typeOfPlan={item.typeOfPlan}  weight={item.totalWeight} duration={item.duration} startDate={item.startDate} endDate={item.endDate} totalPrice={item.totalPrice} key={item.preserverId}></ListComponent>
+                })} */}
             </div>
         </div>
     )
