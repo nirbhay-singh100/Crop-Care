@@ -17,7 +17,7 @@ const Farmer = () => {
         typeOfPlan: ""
     });
     const [list, setList] = useState([]);
-    const [purchaseList, setPurchaseList] = useState([]);
+    const [purchaseList, setPurchaseList] = useState([{}]);
     const navigate = useNavigate();
 
 
@@ -72,13 +72,13 @@ const Farmer = () => {
 
             const data = await res.json();
 
-            if(!(res.status===200 || res.status===201)){
+            if(res.status!==201){
                 const error = new Error(res.error);
                 throw error; 
             }
-
+            console.log(res.status);
             console.log(data.myPurchases);
-            setPurchaseList(data.myPurchases);
+            setPurchaseList(data.myPurchase);
             console.log(purchaseList);
 
         } catch (error) {
@@ -214,7 +214,7 @@ const Farmer = () => {
                     {purchaseList.map((it, index) => {
 
                         // return <ListComponent preserverName={it.preserverName} price={it.pricePerKg} typeOfPlan={it.typeOfPlan}  weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice} key={it.preserverId}></ListComponent>
-                        return <PurchaseListComponent key={index}preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>
+                        return <PurchaseListComponent key={index} preserverName={it.preserverName} price={it.pricePerKG} typeOfPlan={it.typeOfPlan} weight={it.totalWeight} duration={it.duration} startDate={it.startDate} endDate={it.endDate} totalPrice={it.totalPrice}></PurchaseListComponent>;
                     })}
                 </div>
 
